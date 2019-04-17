@@ -22,13 +22,6 @@ def cozmo_program(robot: cozmo.robot.Robot):
     print("Playing Animation Trigger 2: (Ignoring the body track)")
     robot.play_anim_trigger(cozmo.anim.Triggers.CubePounceLoseSession, ignore_body_track=True).wait_for_completed()
 
-    # Play an animation via its Name.
-    # Warning: Future versions of the app might change these, so for future-proofing
-    # we recommend using play_anim_trigger above instead.
-    # See the remote_control_cozmo.py example in apps for an easy way to see
-    # the available animations.
-    print("Playing Animation 3:")
-    robot.play_anim(name="anim_poked_giggle").wait_for_completed()
 
 
 cozmo.run_program(cozmo_program)

@@ -27,13 +27,4 @@ def cozmo_program(robot: cozmo.robot.Robot):
         print('Playing {}'.format(trigger.name))
         robot.play_anim_trigger(trigger).wait_for_completed()
 
-
-    # grab animation triggers that have 'WinGame' in their name
-    chosen_triggers = [trigger for trigger in robot.anim_triggers if 'WinGame' in trigger.name]
-
-    # play the three random animations one after the other, waiting for each to complete
-    for trigger in chosen_triggers:
-        print('Playing {}'.format(trigger.name))
-        robot.play_anim_trigger(trigger).wait_for_completed()
-
 cozmo.run_program(cozmo_program)
