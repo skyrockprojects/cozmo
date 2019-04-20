@@ -17,18 +17,17 @@ import cozmo
 
 def get_in_position(robot: cozmo.robot.Robot):
     '''If necessary, Move Cozmo's Head and Lift to make it easy to see Cozmo's face'''
-    if (robot.lift_height.distance_mm > 45) or (robot.head_angle.degrees < 40):
-        with robot.perform_off_charger():
-            lift_action = robot.set_lift_height(0.0, in_parallel=True)
-            head_action = robot.set_head_angle(cozmo.robot.MAX_HEAD_ANGLE,
-                                               in_parallel=True)
-            lift_action.wait_for_completed()
-            head_action.wait_for_completed()
-
+    # If Cozmo's lift height is higher than 45mm (robot.lift_height.distance_mm)
+    # or its head is smaller than 40 degrees (robot.head_angle.degrees < 40): 
+    with robot.perform_off_charger():
+        print("test")
+    # set the lift height to 0.0 (robot.set_lift_height())
+    # set the head angle to the maximum (robot.set_head_angle())
+    # wait for complete
 
 def cozmo_program(robot: cozmo.robot.Robot):
     current_directory = os.path.dirname(os.path.realpath(__file__))
-    get_in_position(robot)
+    # call the get_in_position function here
     sdk_png = os.path.join(current_directory, "..", "..", "face_images", "cozmosdk.png")
     hello_png = os.path.join(current_directory, "..", "..", "face_images", "hello_world.png")
 
@@ -56,10 +55,11 @@ def cozmo_program(robot: cozmo.robot.Robot):
 
     print("Press CTRL-C to quit (or wait %s seconds to complete)" % int(num_loops*duration_s) )
 
-    for _ in range(num_loops):
-        for image in face_images:
-            robot.display_oled_face_image(image, duration_s * 1000.0)
-            time.sleep(duration_s)
+    robot.display_oled_face_image(face_image[0], 1.0 * 1000.0)
+
+    # for _ in range(num_loops):
+    #     display each image on Cozmo's face for duration_s seconds 
+    
 
 
 # Cozmo is moved off his charger contacts by default at the start of any program.
